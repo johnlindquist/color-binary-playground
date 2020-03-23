@@ -13,24 +13,16 @@ let hex = document.querySelector("#hex")
 
 for (let input of inputs) {
   input.addEventListener("input", event => {
-    switch (event.target.id) {
-      case "red":
-        red = event.target.value << 16
-        break;
+    let id = event.target.id
+    let value = event.target.value
 
-      case "green":
-        green = event.target.value << 8
-        break;
+    if (id === "red") red = value << 16
+    if (id === "green") green = value << 8
+    if (id === "blue") blue = value
 
-      case "blue":
-        blue = event.target.value
-        break;
 
-      default:
-        red = green = blue = 0;
-        break;
-    }
-    let color = toHex(red | green | blue)
+    color = toHex(red | green | blue)
+
     hex.value = color
 
     document.body.style.backgroundColor = color

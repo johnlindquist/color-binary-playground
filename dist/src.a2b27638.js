@@ -137,25 +137,12 @@ try {
   for (var _iterator = inputs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
     var input = _step.value;
     input.addEventListener("input", function (event) {
-      switch (event.target.id) {
-        case "red":
-          red = event.target.value << 16;
-          break;
-
-        case "green":
-          green = event.target.value << 8;
-          break;
-
-        case "blue":
-          blue = event.target.value;
-          break;
-
-        default:
-          red = green = blue = 0;
-          break;
-      }
-
-      var color = toHex(red | green | blue);
+      var id = event.target.id;
+      var value = event.target.value;
+      if (id === "red") red = value << 16;
+      if (id === "green") green = value << 8;
+      if (id === "blue") blue = value;
+      color = toHex(red | green | blue);
       hex.value = color;
       document.body.style.backgroundColor = color;
     });

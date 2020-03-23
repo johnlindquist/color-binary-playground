@@ -118,16 +118,62 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"src/index.js":[function(require,module,exports) {
-var blue = 0x0000ff;
-var green = 0x00ff00;
-var red = 0xff0000;
-console.log(255 === 0xff);
-
 var toHex = function toHex(color) {
   return "#".concat(color.toString(16).padStart(6, "0"));
 };
 
-document.body.style.backgroundColor = toHex(red);
+var color = 0;
+var red = 0;
+var green = 0;
+var blue = 0;
+document.body.style.backgroundColor = toHex(color);
+var inputs = document.querySelectorAll("input[type='range']");
+var hex = document.querySelector("#hex");
+var _iteratorNormalCompletion = true;
+var _didIteratorError = false;
+var _iteratorError = undefined;
+
+try {
+  for (var _iterator = inputs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+    var input = _step.value;
+    input.addEventListener("input", function (event) {
+      switch (event.target.id) {
+        case "red":
+          red = event.target.value << 16;
+          break;
+
+        case "green":
+          green = event.target.value << 8;
+          break;
+
+        case "blue":
+          blue = event.target.value;
+          break;
+
+        default:
+          red = green = blue = 0;
+          break;
+      }
+
+      var color = toHex(red | green | blue);
+      hex.value = color;
+      document.body.style.backgroundColor = color;
+    });
+  }
+} catch (err) {
+  _didIteratorError = true;
+  _iteratorError = err;
+} finally {
+  try {
+    if (!_iteratorNormalCompletion && _iterator.return != null) {
+      _iterator.return();
+    }
+  } finally {
+    if (_didIteratorError) {
+      throw _iteratorError;
+    }
+  }
+}
 },{}],"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

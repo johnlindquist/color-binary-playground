@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Parcel Sandbox</title>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./src/styles.css" />
-  </head>
 
-  <body>
-    <div id="app"></div>
+<head>
+  <title>Parcel Sandbox</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="./src/styles.css" />
+</head>
 
-    <script src="src/index.js"></script>
-  </body>
+<body>
+  <div>
+    <label for="red">Red</label>
+    <input id="red" type="range" min="0" max="255" value="0">
+  </div>
+  <div>
+    <label for="green">Green</label>
+    <input id="green" type="range" min="0" max="255" value="0">
+  </div>
+  <div>
+    <label for="blue">Blue</label>
+    <input id="blue" type="range" min="0" max="255" value="0">
+  </div>
+  <div><label for="hex"></label><input id="hex" type="text"></div>
+
+  <script src="src/index.js"></script>
+</body>
+
 </html>

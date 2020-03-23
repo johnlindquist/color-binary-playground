@@ -118,49 +118,30 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"src/index.js":[function(require,module,exports) {
-var toHex = function toHex(color) {
-  return "#".concat(color.toString(16).padStart(6, "0"));
-};
+let toHex = color => `#${color.toString(16).padStart(6, "0")}`;
 
-var color = 0;
-var red = 0;
-var green = 0;
-var blue = 0;
-document.body.style.backgroundColor = toHex(color);
-var inputs = document.querySelectorAll("input[type='range']");
-var hex = document.querySelector("#hex");
-var _iteratorNormalCompletion = true;
-var _didIteratorError = false;
-var _iteratorError = undefined;
+let inputs = document.querySelectorAll("input[type='range']");
+let hex = document.querySelector("#hex");
+let red = 0;
+let green = 0;
+let blue = 0;
+let color = 0;
 
-try {
-  for (var _iterator = inputs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-    var input = _step.value;
-    input.addEventListener("input", function (event) {
-      var id = event.target.id;
-      var value = event.target.value;
-      if (id === "red") red = value << 16;
-      if (id === "green") green = value << 8;
-      if (id === "blue") blue = value;
-      color = toHex(red | green | blue);
-      hex.value = color;
-      document.body.style.backgroundColor = color;
-    });
-  }
-} catch (err) {
-  _didIteratorError = true;
-  _iteratorError = err;
-} finally {
-  try {
-    if (!_iteratorNormalCompletion && _iterator.return != null) {
-      _iterator.return();
-    }
-  } finally {
-    if (_didIteratorError) {
-      throw _iteratorError;
-    }
-  }
+for (let input of inputs) {
+  input.addEventListener("input", event => {
+    let id = event.target.id;
+    let value = parseInt(event.target.value, 10);
+    if (id === "red") red = value << 16;
+    if (id === "green") green = value << 8;
+    if (id === "blue") blue = value;
+    color = red | green | blue;
+    document.body.style.backgroundColor = toHex(color);
+    hex.value = toHex(color);
+  });
 }
+
+document.body.style.backgroundColor = toHex(color);
+hex.value = toHex(color);
 },{}],"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
